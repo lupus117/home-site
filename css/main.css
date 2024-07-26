@@ -1,0 +1,78 @@
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 0 1px 0;
+    padding-bottom: 30px;
+    background-color: rgb(213, 238, 247);
+
+}
+
+
+.header #top{
+    margin-left: 50%;
+    display:flex;
+
+}
+.header #headerlinks {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+#headerlinks a {
+    padding: 0 20px 0 20px;
+    font-size: large;
+    font-weight: bold;
+    
+}
+.header #top #headerInfo{
+    background-color: white;
+    width: 50px;
+    height: 50px;
+    padding: 5px 5px 5px 5px;
+    border-radius: 5px;
+    box-shadow: 2px 2px  2px lightblue;
+    margin-left: -25px;
+    max-width: 50px;
+    transition: all 0.1s;
+    display:flex;
+    overflow: hidden;
+
+    
+}
+.header #top #headerInfo p {
+    animation: 1s fadeIn;
+    animation-fill-mode: forwards;
+    visibility: hidden;
+    overflow:visible;
+    position:absolute;
+    margin-left: 70px;
+    
+}
+
+
+.header #top #headerInfo:hover{
+    width: 160px;
+    margin-left: -80px;
+    max-width: 160px;
+}
+.header #top #headerInfo:hover  p {
+    visibility: visible;
+}
+
+body {
+    background-color: lightblue;
+    margin-top: 100px;
+
+}
+
+.screen {
+    width: 100%;
+    height: 80vh;
+    background-image: url("../images/Windows_desktop.png");
+    background-color: rgb(6, 71, 145) ;
+    background-repeat: no-repeat;
+    background-size: contain;
+}

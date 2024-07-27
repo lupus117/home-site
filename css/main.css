@@ -66,20 +66,42 @@ body {
     background-color: lightblue;
 margin: 0 0 0 0;
 }
+
+
+.screen {
+    width: 100%;
+    height: 85vh;
+    background-image: url("../images/tiles.jpg");
+    background-color: rgb(6, 71, 145) ;
+    background-repeat: repeat;
+    background-size: contain;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.item img{
+    height: 100px;
+}
+.item {
+    margin: 10px;
+    text-align: center;
+}
+.item p{
+    margin-top: 0;
+    color: black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 @media (orientation: portrait) {
     #headerlinks a {
         font-size: 2rem;
     }
-
-
 }
-
-.screen {
-    width: 98vw;
-    margin-left: 1vw;
-    height: 80vh;
-    background-image: url("../images/Windows_desktop.png");
-    background-color: rgb(6, 71, 145) ;
-    background-repeat: no-repeat;
-    background-size: contain;
+@media (max-width: 1000px) {
+    #headerlinks a {
+        font-size: 3rem;
+    }
+    .item img{
+        height: 200px;
+    }
 }

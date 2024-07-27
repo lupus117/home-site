@@ -109,10 +109,44 @@ body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+
+.window {
+    width: 40vw;
+    height: 50vh;
+    background-color:rgb(213, 238, 247);
+    position: absolute;
+    left: 30vw;
+    border: 2px solid darkblue ;
+    border-radius: 5px;
+    translate: 0 20px;
+    padding-bottom: 2vh;
+}
+.controlbar{
+    margin-top: 0;
+    flex: auto;
+    height: 2vh;
+    width: 100%;
+    background-color: lightblue;
+    margin-bottom: 0;
+}
+#windowcontent{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+
 @media (orientation: portrait) {
     #headerlinks a {
         font-size: 2rem;
     }
+    .window {
+        width: 98vw;
+        left: 1vw;
+    }
+
 }
 
 @media (max-width: 1000px) {

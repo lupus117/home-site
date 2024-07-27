@@ -1,0 +1,16 @@
+{
+    "desktop": [
+        {
+            "Name": "Lupus",
+            "type":"link",
+            "link": "#",
+            "icon":"images/token.png"
+        },
+        {
+            "Name": "Lupus",
+            "type":"folder",
+            "link": "#",
+            "icon":"images/token/folder.png"
+        }
+    ]
+}

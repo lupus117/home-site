@@ -25,6 +25,7 @@ function createIdItemsFromArray(id, arr) {
 async function retrieveFileByTags(tags = []) {
 
     var _files = [];
+    console.log(tags)
     includedesktop = false;
     if (tags.length == 1&& tags.includes("desktop")){
         includedesktop = true
@@ -41,13 +42,19 @@ async function retrieveFileByTags(tags = []) {
             json.files.forEach(item => {
                 var included = false;
                 item.id = i;
+                if(tags.includes("*")){
+                    included = true;
+                }
                 item.tags.forEach(tag => {
-                    if (tags.includes(tag) || tag == "*"){
+                    if (tags.includes(tag)){
                         included = true;
+                        console.log(tag)
                     }
+
                     if(item.tags.includes("desktop") && !includedesktop){
                         included = false;
                     }
+
                 });
                 if (included) {
                     _files.push(item);

@@ -34,6 +34,13 @@
             "link": "https://docs.google.com/document/d/1eFj60rX4y9KYljRYpVTLdZlWowSefoybL5FyzE4iJDc/edit?usp=sharing",
             "icon":"images/icons/folder.png",
             "tags":["art"]
+        },
+        {
+            "name": "Beautiful view",
+            "type":"link",
+            "link": "images/20220704_211628.jpg",
+            "icon":"images/icons/link.png",
+            "tags":[]
         }
     ]
 }

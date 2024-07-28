@@ -6,7 +6,7 @@ function createIdItem(Id, img, name, func, link) {
     }
     var tmpitem = `
 <div class="item" onclick="${func}">
-    <a href="${tmplink}"><img src="${img}" alt="token"></a>
+    <a href="#"><img src="${img}" alt="token"></a>
     <p>${name}</p>
 
 </div>`;
@@ -80,14 +80,25 @@ async function openWindow(id, type, link = "#", tags = [], name = "") {
     closeWindow(`#_${id}`);
     var tmpitem = `
     <div class="window" id="_${id}">
-        <div class="controlbar">
-        <button>O</button>
-        <button style="float: right;" onclick="closeWindow('#_${id}')">X</button >
-        </div>
-        <div class="windowcontent" id="windowcontent_${id}">
-        </div>
-
+    <div class="controlbar">
+    <button style="float: right;" onclick="closeWindow('#_${id}')">X</button >
+    </div>
+    <div class="windowcontent" id="windowcontent_${id}">
+    </div>
+    
     </div>`
+    if(type == "link" || type == "image"){
+        tmpitem = `
+    <div class="window" id="_${id}">
+    <div class="controlbar">
+    <a href="${link}"> <button >O</button></a>
+    <button style="float: right;" onclick="closeWindow('#_${id}')">X</button >
+    </div>
+    <div class="windowcontent" id="windowcontent_${id}">
+    </div>
+    
+    </div>`
+    }
 
 
     document.getElementById("screen").insertAdjacentHTML("beforeend", tmpitem.trim());

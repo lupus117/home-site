@@ -8,7 +8,7 @@
             "tags":["desktop"]
         },
         {
-            "name": "all",
+            "name": "All files",
             "type":"folder",
             "link": "#",
             "icon":"images/icons/folder.png",
@@ -37,9 +37,9 @@
         },
         {
             "name": "Beautiful view",
-            "type":"link",
+            "type":"image",
             "link": "images/20220704_211628.jpg",
-            "icon":"images/icons/link.png",
+            "icon":"images/icons/image.png",
             "tags":[]
         }
     ]

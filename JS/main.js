@@ -127,6 +127,17 @@ async function openWindow(id, type, link = "#", tags = [], name = "") {
             >
             </iframe>`
             document.getElementById(`windowcontent_${id}`).insertAdjacentHTML("beforeend",iframe.trim())
+            break;
+            case "image":
+            var image =`
+            <div style="object-fit:contain;">
+
+            <img src="${link}" style="width:100%; height=100%" alt="${name}">
+            </div>
+
+            `
+            document.getElementById(`windowcontent_${id}`).insertAdjacentHTML("beforeend",image.trim())
+            break;
 
         default:
             break;

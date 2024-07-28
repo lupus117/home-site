@@ -152,6 +152,9 @@ body {
     display: flex;
     flex-flow: row wrap;
 }
+iframe {
+    width: 100%;
+}
 
 
 @media (orientation: portrait) {

@@ -14,11 +14,11 @@ function createIdItem(Id, img, name, func, link) {
     var div = document.getElementById(Id).insertAdjacentHTML("beforeend", tmpitem.trim());
 
 }
-function createIdItemsFromArray(id,arr){
+function createIdItemsFromArray(id, arr) {
     arr.forEach(item => {
         // createIdItem("desktop", item.icon, item.name, `openWindow("1","${item.type}","${item.link}","["${item.tags}"])"`, item.link);
-         createIdItem(id, item.icon, item.name, `openWindow('1','${item.type}','${item.link}',['${item.tags.join("','")}'])`, item.link);
-     });
+        createIdItem(id, item.icon, item.name, `openWindow('1','${item.type}','${item.link}',['${item.tags.join("','")}'],'${item.name}')`, item.link);
+    });
 
 }
 
@@ -59,7 +59,7 @@ function closeWindow(id) {
     document.querySelector(id).remove();
 }
 
-async function openWindow(id, type, link = "#", tags = []) {
+async function openWindow(id, type, link = "#", tags = [], name = "") {
     var tmpitem = `
     <div class="window" id="_${id}">
         <div class="controlbar">
@@ -72,7 +72,7 @@ async function openWindow(id, type, link = "#", tags = []) {
     </div>`
 
 
-    var div = document.getElementById("screen").insertAdjacentHTML("beforeend", tmpitem.trim());
+    document.getElementById("screen").insertAdjacentHTML("beforeend", tmpitem.trim());
     const _window = document.querySelector(".window");
     const controlbar = document.querySelector(".controlbar");
 
@@ -90,10 +90,29 @@ async function openWindow(id, type, link = "#", tags = []) {
     document.addEventListener("mouseup", () => {
         controlbar.removeEventListener("mousemove", onDrag);
     });
+    switch (type) {
+        case "folder":
+            files = await retrieveFileByTags(tags)
+            createIdItemsFromArray(`windowcontent_${id}`, files)
+            break;
 
+        case "link":
+            var iframe = `
+            <iframe
+                src="${link}"
+                name="${name}"
+                allowTransparency="true"
+                scrolling="yes"
+                frameborder="0"
+            >
+            </iframe>`
+            document.getElementById(`windowcontent_${id}`).insertAdjacentHTML("beforeend",iframe.trim())
+
+        default:
+            break;
+    }
     if (type == "folder") {
-        files = await retrieveFileByTags(tags)
-        createIdItemsFromArray(`windowcontent_${id}`,files)
+
     }
 }
 
@@ -103,7 +122,7 @@ async function init() {
     //  console.log(retrieveFileByTags(["desktop"]));
 
     var desktopfiles = await retrieveFileByTags(["desktop"]);
-    createIdItemsFromArray("desktop",desktopfiles)
+    createIdItemsFromArray("desktop", desktopfiles)
 
 
 }

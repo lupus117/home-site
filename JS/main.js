@@ -17,7 +17,7 @@ function createIdItem(Id, img, name, func, link) {
 function createIdItemsFromArray(id, arr) {
     arr.forEach(item => {
         // createIdItem("desktop", item.icon, item.name, `openWindow("1","${item.type}","${item.link}","["${item.tags}"])"`, item.link);
-        createIdItem(id, item.icon, item.name, `openWindow('1','${item.type}','${item.link}',['${item.tags.join("','")}'],'${item.name}')`, item.link);
+        createIdItem(id, item.icon, item.name, `openWindow('${id}','${item.type}','${item.link}',['${item.tags.join("','")}'],'${item.name}')`, item.link);
     });
 
 }
@@ -36,6 +36,7 @@ async function retrieveFileByTags(tags = []) {
             var i = 0;
             json.files.forEach(item => {
                 var included = false;
+                item.id = i;
                 tags.forEach(tag => {
                     if (item.tags.includes(tag)) {
                         included = true;
@@ -43,9 +44,8 @@ async function retrieveFileByTags(tags = []) {
                 });
                 if (included) {
                     _files.push(item);
-                    i++;
-
                 }
+                i++;
             })
             return i;
         })
@@ -55,16 +55,20 @@ async function retrieveFileByTags(tags = []) {
     return _files;
 }
 
-function closeWindow(id) {
-    document.querySelector(id).remove();
+function closeWindow() {
+    var div = document.querySelector(".window");
+    if (div != undefined){
+        document.querySelector(".window").remove();
+    }
 }
 
 async function openWindow(id, type, link = "#", tags = [], name = "") {
+    closeWindow();
     var tmpitem = `
     <div class="window" id="_${id}">
         <div class="controlbar">
         <button>O</button>
-        <button style="float: right;" onclick="closeWindow('#_${id}')">X</button >
+        <button style="float: right;" onclick="closeWindow()">X</button >
         </div>
         <div class="windowcontent" id="windowcontent_${id}">
         </div>
@@ -73,8 +77,8 @@ async function openWindow(id, type, link = "#", tags = [], name = "") {
 
 
     document.getElementById("screen").insertAdjacentHTML("beforeend", tmpitem.trim());
-    const _window = document.querySelector(".window");
-    const controlbar = document.querySelector(".controlbar");
+    const _window = document.querySelector(`#_${id}`);
+    const controlbar = document.querySelector(`#_${id} div.controlbar`);
 
     function onDrag({ movementX, movementY }) {
         let getStyle = window.getComputedStyle(_window);
@@ -90,6 +94,8 @@ async function openWindow(id, type, link = "#", tags = [], name = "") {
     document.addEventListener("mouseup", () => {
         controlbar.removeEventListener("mousemove", onDrag);
     });
+
+
     switch (type) {
         case "folder":
             files = await retrieveFileByTags(tags)
@@ -122,6 +128,7 @@ async function init() {
     //  console.log(retrieveFileByTags(["desktop"]));
 
     var desktopfiles = await retrieveFileByTags(["desktop"]);
+    console.log(desktopfiles);
     createIdItemsFromArray("desktop", desktopfiles)
 
 

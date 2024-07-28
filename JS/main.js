@@ -64,7 +64,7 @@ function init() {
             console.log(json);
 
             json.desktop.forEach(item => {
-            createIdItem("desktop", item.icon, item.Name, `openWindow(1)`);
+            createIdItem("desktop", item.icon, item.name, `openWindow(1)`);
 
                 
             });

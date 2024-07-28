@@ -7,7 +7,7 @@
             "icon":"images/icons/sten.png"
         },
         {
-            "name": "Lupus",
+            "name": "all",
             "type":"folder",
             "link": "#",
             "icon":"images/icons/folder.png"

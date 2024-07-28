@@ -27,6 +27,13 @@
             "link": "#",
             "icon":"images/icons/folder.png",
             "tags":["desktop"]
+        },
+        {
+            "name": "notindesktop",
+            "type":"folder",
+            "link": "#",
+            "icon":"images/icons/folder.png",
+            "tags":["art"]
         }
     ]
 }

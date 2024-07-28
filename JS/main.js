@@ -1,5 +1,5 @@
 
-function createIdItem(Id, img, desc, func, link) {
+function createIdItem(Id, img, name, func, link) {
     var tmplink = "#";
     if (link != undefined) {
         tmplink = link;
@@ -7,29 +7,70 @@ function createIdItem(Id, img, desc, func, link) {
     var tmpitem = `
 <div class="item" onclick="${func}">
     <a href="${tmplink}"><img src="${img}" alt="token"></a>
-    <p>${desc}</p>
+    <p>${name}</p>
 
 </div>`;
 
     var div = document.getElementById(Id).insertAdjacentHTML("beforeend", tmpitem.trim());
 
 }
+function createIdItemsFromArray(id,arr){
+    arr.forEach(item => {
+        // createIdItem("desktop", item.icon, item.name, `openWindow("1","${item.type}","${item.link}","["${item.tags}"])"`, item.link);
+         createIdItem(id, item.icon, item.name, `openWindow('1','${item.type}','${item.link}',['${item.tags.join("','")}'])`, item.link);
+     });
 
+}
+
+async function retrieveFileByTags(tags = []) {
+
+    var _files = [];
+
+    var length = await fetch("https://sten-unt.com/data/files.json").then(response => {
+        if (!response.ok) {
+            throw new Error("HTTP error " + response.status);
+        }
+        return response.json();
+    })
+        .then(json => {
+            var i = 0;
+            json.files.forEach(item => {
+                var included = false;
+                tags.forEach(tag => {
+                    if (item.tags.includes(tag)) {
+                        included = true;
+                    }
+                });
+                if (included) {
+                    _files.push(item);
+                    i++;
+
+                }
+            })
+            return i;
+        })
+        .catch(function () {
+            this.dataError = true;
+        })
+    return _files;
+}
 
 function closeWindow(id) {
     document.querySelector(id).remove();
 }
-function openWindow(id, type, link = "#", tags = []) {
+
+async function openWindow(id, type, link = "#", tags = []) {
     var tmpitem = `
     <div class="window" id="_${id}">
         <div class="controlbar">
         <button>O</button>
         <button style="float: right;" onclick="closeWindow('#_${id}')">X</button >
         </div>
-        <div id="windowcontent">
+        <div class="windowcontent" id="windowcontent_${id}">
         </div>
 
     </div>`
+
 
     var div = document.getElementById("screen").insertAdjacentHTML("beforeend", tmpitem.trim());
     const _window = document.querySelector(".window");
@@ -50,30 +91,19 @@ function openWindow(id, type, link = "#", tags = []) {
         controlbar.removeEventListener("mousemove", onDrag);
     });
 
+    if (type == "folder") {
+        files = await retrieveFileByTags(tags)
+        createIdItemsFromArray(`windowcontent_${id}`,files)
+    }
 }
 
 window.onload = init;
-function init() {
-    fetch("http://sten-unt.com/data/files.json").then(response => {
-        if (!response.ok) {
-            throw new Error("HTTP error " + response.status);
-        }
-        return response.json();
-    })
-        .then(json => {
-            console.log(json);
+async function init() {
 
-            json.desktop.forEach(item => {
-                if (item.tags.includes("desktop")) {
-                    createIdItem("desktop", item.icon, item.name, `openWindow(1,${item.type},${item.link},${item.tags})`);
-                }
+    //  console.log(retrieveFileByTags(["desktop"]));
 
+    var desktopfiles = await retrieveFileByTags(["desktop"]);
+    createIdItemsFromArray("desktop",desktopfiles)
 
-            });
-            //console.log(this.users);
-        })
-        .catch(function () {
-            this.dataError = true;
-        })
 
 }

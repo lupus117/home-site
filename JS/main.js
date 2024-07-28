@@ -1,6 +1,4 @@
 
-
-
 function createIdItem(Id, img, desc, func, link) {
     var tmplink = "#";
     if (link != undefined) {
@@ -56,8 +54,24 @@ function openWindow(id) {
 
 window.onload = init;
 function init() {
-    createIdItem("desktop", "images/icons/folder.png", "all", "openWindow(1)");
-    createIdItem("desktop", "images/icons/folder.png", "Lupus", "");
-    createIdItem("desktop", "images/icons/sten.png", "Lupus", "");
+    fetch("http://sten-unt.com/desktop/desktop.json").then(response => {
+        if (!response.ok) {
+            throw new Error("HTTP error " + response.status);
+        }
+        return response.json();
+    })
+        .then(json => {
+            console.log(json);
+
+            json.desktop.forEach(item => {
+            createIdItem("desktop", item.icon, item.Name, `openWindow(1)`);
+
+                
+            });
+            //console.log(this.users);
+        })
+        .catch(function () {
+            this.dataError = true;
+        })
 
 }

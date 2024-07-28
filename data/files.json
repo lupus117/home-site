@@ -22,16 +22,16 @@
             "tags":["desktop"]
         },
         {
-            "name": "all",
+            "name": "Art",
             "type":"folder",
             "link": "#",
             "icon":"images/icons/folder.png",
-            "tags":["desktop"]
+            "tags":["desktop", "art"]
         },
         {
-            "name": "notindesktop",
-            "type":"folder",
-            "link": "#",
+            "name": "Art Portfolio",
+            "type":"link",
+            "link": "https://docs.google.com/document/d/1eFj60rX4y9KYljRYpVTLdZlWowSefoybL5FyzE4iJDc/edit?usp=sharing",
             "icon":"images/icons/folder.png",
             "tags":["art"]
         }

@@ -17,7 +17,7 @@ function createIdItem(Id, img, name, func, link) {
 function createIdItemsFromArray(id, arr) {
     arr.forEach(item => {
         // createIdItem("desktop", item.icon, item.name, `openWindow("1","${item.type}","${item.link}","["${item.tags}"])"`, item.link);
-        createIdItem(id, item.icon, item.name, `openWindow('${id}','${item.type}','${item.link}',['${item.tags.join("','")}'],'${item.name}')`, item.link);
+        createIdItem(id, item.icon, item.name, `openWindow('${item.id}','${item.type}','${item.link}',['${item.tags.join("','")}'],'${item.name}')`, item.link);
     });
 
 }
@@ -55,20 +55,20 @@ async function retrieveFileByTags(tags = []) {
     return _files;
 }
 
-function closeWindow() {
-    var div = document.querySelector(".window");
+function closeWindow(id) {
+    var div = document.querySelector(id);
     if (div != undefined){
-        document.querySelector(".window").remove();
+        document.querySelector(id).remove();
     }
 }
 
 async function openWindow(id, type, link = "#", tags = [], name = "") {
-    closeWindow();
+    closeWindow(`#_${id}`);
     var tmpitem = `
     <div class="window" id="_${id}">
         <div class="controlbar">
         <button>O</button>
-        <button style="float: right;" onclick="closeWindow()">X</button >
+        <button style="float: right;" onclick="closeWindow('#_${id}')">X</button >
         </div>
         <div class="windowcontent" id="windowcontent_${id}">
         </div>

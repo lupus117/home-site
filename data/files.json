@@ -1,0 +1,32 @@
+{
+    "files":[
+        {
+            "name": "Lupus",
+            "type": "link",
+            "link": "#",
+            "icon":"images/icons/sten.png",
+            "tags":["desktop"]
+        },
+        {
+            "name": "all",
+            "type":"folder",
+            "link": "#",
+            "icon":"images/icons/folder.png",
+            "tags":["desktop"]
+        },
+        {
+            "name": "CV",
+            "type":"link",
+            "link": "#",
+            "icon":"images/icons/sten.png",
+            "tags":["desktop"]
+        },
+        {
+            "name": "all",
+            "type":"folder",
+            "link": "#",
+            "icon":"images/icons/folder.png",
+            "tags":["desktop"]
+        }
+    ]
+}

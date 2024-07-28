@@ -19,7 +19,7 @@ function createIdItem(Id, img, desc, func, link) {
 function closeWindow(id) {
     document.querySelector(id).remove();
 }
-function openWindow(id) {
+function openWindow(id, type, link = "#", tags = []) {
     var tmpitem = `
     <div class="window" id="_${id}">
         <div class="controlbar">
@@ -54,7 +54,7 @@ function openWindow(id) {
 
 window.onload = init;
 function init() {
-    fetch("http://sten-unt.com/desktop/desktop.json").then(response => {
+    fetch("http://sten-unt.com/data/files.json").then(response => {
         if (!response.ok) {
             throw new Error("HTTP error " + response.status);
         }
@@ -64,9 +64,11 @@ function init() {
             console.log(json);
 
             json.desktop.forEach(item => {
-            createIdItem("desktop", item.icon, item.name, `openWindow(1)`);
+                if (item.tags.includes("desktop")) {
+                    createIdItem("desktop", item.icon, item.name, `openWindow(1,${item.type},${item.link},${item.tags})`);
+                }
 
-                
+
             });
             //console.log(this.users);
         })

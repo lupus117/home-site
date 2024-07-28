@@ -12,7 +12,7 @@
             "type":"folder",
             "link": "#",
             "icon":"images/icons/folder.png",
-            "tags":["desktop"]
+            "tags":["desktop","*"]
         },
         {
             "name": "CV",

@@ -25,6 +25,10 @@ function createIdItemsFromArray(id, arr) {
 async function retrieveFileByTags(tags = []) {
 
     var _files = [];
+    includedesktop = false;
+    if (tags.length == 1&& tags.includes("desktop")){
+        includedesktop = true
+    }
 
     var length = await fetch("https://sten-unt.com/data/files.json").then(response => {
         if (!response.ok) {
@@ -37,9 +41,12 @@ async function retrieveFileByTags(tags = []) {
             json.files.forEach(item => {
                 var included = false;
                 item.id = i;
-                tags.forEach(tag => {
-                    if (item.tags.includes(tag)) {
+                item.tags.forEach(tag => {
+                    if (tags.includes(tag) || tag == "*"){
                         included = true;
+                    }
+                    if(item.tags.includes("desktop") && !includedesktop){
+                        included = false;
                     }
                 });
                 if (included) {
@@ -125,10 +132,7 @@ async function openWindow(id, type, link = "#", tags = [], name = "") {
 window.onload = init;
 async function init() {
 
-    //  console.log(retrieveFileByTags(["desktop"]));
-
     var desktopfiles = await retrieveFileByTags(["desktop"]);
-    console.log(desktopfiles);
     createIdItemsFromArray("desktop", desktopfiles)
 
 

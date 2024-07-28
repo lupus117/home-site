@@ -75,7 +75,7 @@ body {
 }
 
 
-.screen {
+#screen {
     width: 100%;
     height: 100%;
 
@@ -115,16 +115,17 @@ body {
     height: 50vh;
     background-color:rgb(213, 238, 247);
     position: absolute;
+    top: 20vh;
     left: 30vw;
     border: 2px solid darkblue ;
     border-radius: 5px;
-    translate: 0 20px;
-    padding-bottom: 2vh;
+    /*translate: 0 20px;*/
+    padding-bottom: 4vh;
 }
 .controlbar{
     margin-top: 0;
     flex: auto;
-    height: 2vh;
+    height: 4vh;
     width: 100%;
     background-color: lightblue;
     margin-bottom: 0;

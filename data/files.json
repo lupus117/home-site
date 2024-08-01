@@ -41,6 +41,12 @@
             "link": "images/20220704_211628.jpg",
             "icon":"images/icons/image.png",
             "tags":[]
-        }
-    ]
+        },
+        {
+            "name": "Readme.md",
+            "type":"markdown",
+            "link": "README.md",
+            "icon":"images/icons/note.png",
+            "tags":[]
+        }    ]
 }

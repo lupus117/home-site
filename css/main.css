@@ -89,7 +89,7 @@ body {
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
-    position:absolute;
+    position: absolute;
     width: 100%;
     height: 100%;
 }
@@ -113,16 +113,20 @@ body {
 .window {
     width: 40vw;
     height: 50vh;
-    background-color:rgb(213, 238, 247);
+    background-color: rgb(213, 238, 247);
     position: absolute;
     top: 20vh;
     left: 30vw;
-    border: 2px solid darkblue ;
+    border: 2px solid darkblue;
     border-radius: 5px;
     /*translate: 0 20px;*/
     padding-bottom: 4vh;
+    resize: both;
+    overflow: hidden;
+
 }
-.controlbar{
+
+.controlbar {
     margin-top: 0;
     flex: auto;
     height: 4vh;
@@ -131,27 +135,30 @@ body {
 
     margin-bottom: 0;
 }
-.controlbar button{
+
+.controlbar button {
     margin: 0.5vh;
     height: 3vh;
     width: 3vh;
-    background-color:rgb(213, 238, 247);
+    background-color: rgb(213, 238, 247);
     border: 0 none;
     border-radius: 5px;
-    
+
 }
-.controlbar button:hover{
+
+.controlbar button:hover {
     background-color: white;
 
 }
 
-.windowcontent{
+.windowcontent {
     width: 100%;
     height: 100%;
     overflow: auto;
     display: flex;
 
 }
+
 .mdwrapper {
     flex-flow: row wrap;
     text-align: justify;
@@ -159,6 +166,7 @@ body {
     padding-left: 2%;
     font-size: 1rem;
 }
+
 iframe {
     width: 100%;
 }
@@ -166,9 +174,11 @@ iframe {
 h1 {
     font-size: 2rem;
 }
+
 h2 {
     font-size: 1.5rem;
 }
+
 p {
     font-size: 1rem;
 }
@@ -177,6 +187,7 @@ p {
     #headerlinks a {
         font-size: 2rem;
     }
+
     .window {
         width: 98vw;
         left: 1vw;
@@ -188,6 +199,7 @@ p {
     #headerlinks a {
         font-size: 3rem;
     }
+
     .mdwrapper {
         font-size: 2rem;
     }
@@ -195,9 +207,10 @@ p {
     .item img {
         height: 20vmin;
     }
+
     .item p {
 
         font-size: 2rem;
     }
-     
+
 }

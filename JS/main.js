@@ -207,13 +207,19 @@ async function openWindow(id, type, link = "#", tags = [], name = "") {
             break;
         
         case "markdown":
+
+            var mdwrapper = `
+            <div id="mdwrapper_${id}" class="mdwrapper"></div>
+            `
             await fetch(`https://sten-unt.com/${link}`).then(response => {
                 if (!response.ok) {
                     throw new Error("HTTP error " + response.status);
                 }
                 return response;
             }).then(resp => resp.text()).then(markdown =>{
-                document.getElementById(`windowcontent_${id}`).insertAdjacentHTML("beforeend",simpleMarkdown(markdown));
+                document.getElementById(`windowcontent_${id}`).insertAdjacentHTML("beforeend",simpleMarkdown(mdwrapper.trim()));
+
+                document.getElementById(`mdwrapper_${id}`).insertAdjacentHTML("beforeend",simpleMarkdown(markdown));
             })
 
 

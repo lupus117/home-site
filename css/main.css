@@ -150,12 +150,28 @@ body {
     height: 100%;
     overflow: auto;
     display: flex;
+
+}
+.mdwrapper {
     flex-flow: row wrap;
+    text-align: justify;
+    width: 96%;
+    padding-left: 2%;
+    font-size: 1rem;
 }
 iframe {
     width: 100%;
 }
 
+h1 {
+    font-size: 2rem;
+}
+h2 {
+    font-size: 1.5rem;
+}
+p {
+    font-size: 1rem;
+}
 
 @media (orientation: portrait) {
     #headerlinks a {
@@ -171,6 +187,9 @@ iframe {
 @media (max-width: 1000px) {
     #headerlinks a {
         font-size: 3rem;
+    }
+    .mdwrapper {
+        font-size: 2rem;
     }
 
     .item img {

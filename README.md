@@ -1,4 +1,4 @@
-# sten-unt home site
+# Sten Unt home site
 Welcome to my home site, a lightwheight site cobbled together with pure html, js and css. 
 
 My intentions were making this homey and reminicent of a homey desktop environment where you can view relevant data. 

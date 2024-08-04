@@ -63,8 +63,8 @@ function createIdItem(Id, img, name, func, link) {
         tmplink = link;
     }
     var tmpitem = `
-<div class="item" onclick="${func}">
-    <a href="#"><img src="${img}" alt="token"></a>
+<div class="item">
+    <a href="#"><img src="${img}"  onclick="${func}" alt="token"></a>
     <p>${name}</p>
 
 </div>`;
